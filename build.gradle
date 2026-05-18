@@ -31,6 +31,8 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.modelmapper:modelmapper:3.1.1'
+	// implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.12.1")
 }
 
 tasks.named('test') {
