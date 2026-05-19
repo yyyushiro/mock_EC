@@ -35,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
         stopWatch.start(); // ⏱️ 計測開始
 
         // 1. 100万件のデータを「生成」する
-        int totalRecords = 1000000;
+        int totalRecords = 1000;
 
         // 💡 拡張する余計なコストを防ぐため、最初から「100万個入るサイズ」の箱としてListを生成
         List<Product> hugeProductList = new ArrayList<>(totalRecords);
