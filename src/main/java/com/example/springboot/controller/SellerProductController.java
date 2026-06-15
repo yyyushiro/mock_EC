@@ -1,8 +1,9 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.dto.ProductForSellerCreateRequest;
+import com.example.springboot.dto.ProductForSellerCreateAndUpdateRequest;
 import com.example.springboot.dto.ProductForSellerResponse;
 import com.example.springboot.service.SellerProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -23,9 +24,13 @@ public class SellerProductController {
     }
 
     @PostMapping("/")
-    public ProductForSellerResponse addProduct(@RequestBody ProductForSellerCreateRequest productForSellerCreateRequest) {
-        System.out.println("受け取ったdto: " + productForSellerCreateRequest);
+    public ProductForSellerResponse addProduct(@RequestBody @Valid ProductForSellerCreateAndUpdateRequest productForSellerCreateRequest) {
         return sellerProductService.addProduct(productForSellerCreateRequest);
+    }
+
+    @PutMapping("/{uuidV4}")
+    public void updateProduct(@PathVariable UUID uuidV4, @RequestBody @Valid ProductForSellerCreateAndUpdateRequest productForSellerCreateRequest) {
+        sellerProductService.updateProduct(uuidV4, productForSellerCreateRequest);
     }
 
     @DeleteMapping("/{uuidV4}")
@@ -33,8 +38,4 @@ public class SellerProductController {
         sellerProductService.deleteProduct(uuidV4);
     }
 
-    @PutMapping("/{uuidV4}")
-    public void updateProduct(@PathVariable UUID uuidV4, @RequestBody ProductForSellerCreateRequest productForSellerCreateRequest) {
-        sellerProductService.updateProduct(uuidV4, productForSellerCreateRequest);
-    }
- }
+}

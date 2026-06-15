@@ -1,6 +1,6 @@
 package com.example.springboot.service;
 
-import com.example.springboot.dto.ProductForSellerCreateRequest;
+import com.example.springboot.dto.ProductForSellerCreateAndUpdateRequest;
 import com.example.springboot.dto.ProductForSellerResponse;
 import com.example.springboot.entity.Product;
 import com.example.springboot.repository.ProductRepository;
@@ -24,7 +24,7 @@ public class SellerProductService {
                 .orElseThrow();
     }
 
-    public ProductForSellerResponse addProduct(ProductForSellerCreateRequest productForSellerCreateRequest) {
+    public ProductForSellerResponse addProduct(ProductForSellerCreateAndUpdateRequest productForSellerCreateRequest) {
         Product product = new Product();
         product.setName(productForSellerCreateRequest.name());
         product.setPrice(productForSellerCreateRequest.price());
@@ -46,7 +46,7 @@ public class SellerProductService {
         productRepository.deleteByUuidV4(uuidV4);
     }
 
-    public void updateProduct(UUID uuidV4, ProductForSellerCreateRequest productForSellerCreateRequest) {
+    public void updateProduct(UUID uuidV4, ProductForSellerCreateAndUpdateRequest productForSellerCreateRequest) {
         Product product = productRepository.findByUuidV4(uuidV4).orElseThrow();
         product.setName(productForSellerCreateRequest.name());
         product.setPrice(productForSellerCreateRequest.price());
