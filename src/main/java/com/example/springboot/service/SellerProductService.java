@@ -30,8 +30,6 @@ public class SellerProductService {
         product.setPrice(productForSellerCreateRequest.price());
         product.setStock(productForSellerCreateRequest.stock());
 
-        System.out.println("Price確認: " + product.getPrice());
-
         Product productWithUuid = productRepository.save(product);
 
         return new ProductForSellerResponse(
