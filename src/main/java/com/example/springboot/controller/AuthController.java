@@ -18,6 +18,17 @@ public class AuthController {
 
     private final AuthService authService;
 
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RegisterRequest request,
+                                      HttpServletResponse response) {
+        AuthTokens authTokens = authService.register(request);
+
+        response.addCookie(CookieUtils.create("access_token", authTokens.accessToken(), true, 60 * 15));
+        response.addCookie(CookieUtils.create("refresh_token", authTokens.refreshToken(), true, 60 * 60 * 24 * 7));
+
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request,
                                    HttpServletResponse response) {
@@ -53,16 +64,4 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest request,
-                                      HttpServletResponse response) {
-        AuthTokens authTokens = authService.register(request);
-
-        response.addCookie(CookieUtils.create("access_token", authTokens.accessToken(), true, 60 * 15));
-        response.addCookie(CookieUtils.create("refresh_token", authTokens.refreshToken(), true, 60 * 60 * 24 * 7));
-
-
-
-        return ResponseEntity.ok().build();
-    }
 }
