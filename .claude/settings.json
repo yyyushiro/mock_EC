@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn *)",
+      "Bash(./mvnw *)",
+      "Bash(gradle *)",
+      "Bash(./gradlew *)",
+      "Bash(java -jar *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(* --version)",
+      "Bash(* --help)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push *)",
+      "Bash(mvn deploy *)",
+      "Bash(mvn release *)",
+      "Bash(curl * application.properties)",
+      "Bash(cat *application*.properties)",
+      "Bash(cat *application*.yml)",
+      "Bash(cat *.env)",
+
+      "Read(.gradle/**)",
+      "Read(build/**)",
+      "Read(target/**)",
+      "Read(.mvn/**)",
+      "Read(out/**)",
+      "Read(.idea/**)",
+      "Read(**/*.class)",
+      "Read(**/*.jar)",
+      "Read(**/*.war)"
+    ]
+  }
+}

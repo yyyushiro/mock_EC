@@ -2,9 +2,6 @@ package com.example.springboot.repository;
 
 import com.example.springboot.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByPriceBetween(int minPrice, int maxPrice);
 
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Product p WHERE p.uuidV4 = ?1")
+    boolean existsById(long id);
+
     void deleteByUuidV4(UUID uuidV4);
 }

@@ -4,6 +4,7 @@ import com.example.springboot.dto.RegisterRequest;
 import com.example.springboot.entity.User;
 import com.example.springboot.repository.UserRepository;
 import com.example.springboot.security.UserDetailsImpl;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,5 +31,10 @@ public class UserService {
         User savedUser = userRepository.save(user);
 
         return new UserDetailsImpl(savedUser);
+    }
+
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 }
