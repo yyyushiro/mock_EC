@@ -67,8 +67,9 @@ public class AuthIntegrationTest {
         assertNotEquals(refreshToken, newRefreshToken);
 
         mockMvc.perform(post("/api/auth/logout")
-                .cookie(refreshResult.getResponse().getCookies())
                 .cookie(csrfCookie)
+                .cookie(refreshResult.getResponse().getCookie("access_token"))
+                .cookie(refreshResult.getResponse().getCookie("refresh_token"))
                 .header("X-XSRF-TOKEN", csrfToken))
                 .andExpect(status().isOk());
     }
