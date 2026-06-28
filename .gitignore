@@ -37,3 +37,6 @@ out/
 .vscode/
 
 .env
+spy.log
+Makefile
+docker-compose.yml

@@ -39,6 +39,7 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
 	implementation 'io.github.cdimascio:dotenv-java:3.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
