@@ -18,20 +18,20 @@ public class CookieUtils {
 
     }
 
-    public static Cookie create(String name, String value, boolean httpOnly, int maxAge) {
+    public static Cookie create(String name, String value, boolean httpOnly, int maxAge, boolean secure) {
         Cookie cookie = new Cookie(name, value);
         cookie.setHttpOnly(httpOnly);
-        cookie.setSecure(true);
+        cookie.setSecure(secure);
         cookie.setPath("/");
         cookie.setMaxAge(maxAge);
         cookie.setAttribute("SameSite", "Lax");
         return cookie;
     }
 
-    public static Cookie delete(String name) {
+    public static Cookie delete(String name, boolean secure) {
         Cookie cookie = new Cookie(name, "");
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(secure);
         cookie.setPath("/");
         cookie.setMaxAge(0);  // 即時削除
         return cookie;
